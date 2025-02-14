@@ -24,6 +24,11 @@ jobs:
         run: npm install
         working-directory: frontend
 
+      - name: Create .env File
+        run: |
+          echo "VITE_API_BASE_URL=http://44.203.193.5:5000/api" > frontend/.env
+        working-directory: frontend
+
       - name: Build Project
         run: npm run build
         working-directory: frontend
