@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Multi-Cloud Deployment
+name: Multi-Cloud CI/CD Pipeline for  Deployment
 
 on:
   push:
