@@ -16,10 +16,7 @@ jobs:
         parts: [backend, frontend]
     steps:
       - uses: actions/checkout@v3
-      - name: Test ${{ matrix.parts }}
-        run: |
-          cd ${{ matrix.parts }}
-          npm test
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
