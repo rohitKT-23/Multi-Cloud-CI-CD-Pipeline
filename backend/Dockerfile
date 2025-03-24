@@ -1,18 +1,14 @@
-# Use Node.js official image
-FROM node:18
-
-# Set working directory
+# Stage 1: Build
+FROM node:18-alpine as builder
 WORKDIR /app
-
-# Copy package.json and install dependencies
-COPY package.json ./
-RUN npm install
-
-# Copy the entire project
+COPY package*.json ./
+RUN npm ci
 COPY . .
+RUN npm run build
 
-# Expose port
+# Stage 2: Run
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app .
 EXPOSE 5000
-
-# Run the server
-CMD ["npm", "run", "dev"]
+CMD ["node", "src/server.js"]
