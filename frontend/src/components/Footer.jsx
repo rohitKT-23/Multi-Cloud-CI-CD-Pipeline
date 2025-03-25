@@ -1,11 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Navbar = () => {
   return (
-    <footer>
-      <p>© 2025 Multi-Cloud CI/CD Project</p>
-    </footer>
+    <nav>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Register</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
+      </ul>
+    </nav>
   );
 };
 
-export default Footer;
+export default Navbar;
