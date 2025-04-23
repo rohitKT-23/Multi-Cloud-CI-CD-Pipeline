@@ -47,8 +47,7 @@ const checkAzureStatus = async () => {
       id: "azure",
       name: "Azure Static Web App",
       // status: response.data.properties.provisioningState === "Succeeded" ? "Running" : "Stopped",
-      status: "RUNNING ",
-
+      status: "RUNNING!\nLast Commit: Add .env to gitignore",
       url: response.data.properties.defaultHostname || "N/A",
       lastUpdated: new Date()
     };
