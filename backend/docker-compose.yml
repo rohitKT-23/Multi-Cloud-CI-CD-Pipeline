@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGO_URI=mongodb://localhost:27017/MultiCloudCiCd
+      - JWT_SECRET=a62eec0d5e50b6ee31574d3dd7ddb7b5a838edc68ca95ec08d1d8df608f2e5b6
+      # Add other environment variables as needed for cloud services
+    restart: unless-stopped
+    volumes:
+      - ./logs:/usr/src/app/logs
