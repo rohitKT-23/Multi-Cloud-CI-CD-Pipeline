@@ -3,7 +3,10 @@ const {
   checkAzureStatus, 
   checkAWSStatus,
   getAzureMetrics,
-  getAWSMetrics
+  getAWSMetrics,
+  getAzureBilling,
+  getAWSBilling,
+  getCombinedBilling
 } = require('../services/cloudMonitor');
 
 const router = express.Router();
@@ -38,6 +41,23 @@ router.get('/aws/metrics', async (req, res) => {
     res.json(metrics);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch AWS metrics' });
+  }
+});
+
+// ✅ Get Combined Billing Info (Azure + AWS)
+router.get('/billing', async (req, res) => {
+  try {
+    const [azure, aws] = await Promise.all([
+      getAzureBilling(),
+      getAWSBilling()
+    ]);
+    res.json({
+      azure,
+      aws,
+      total: parseFloat((azure + aws).toFixed(2))
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch billing info', details: error.message });
   }
 });
 
